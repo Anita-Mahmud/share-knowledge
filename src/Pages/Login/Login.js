@@ -2,13 +2,17 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import Loading from '../../components/Loading';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
-    const {googleAuthProvider,logIn} = useContext(AuthContext);
+    const {googleAuthProvider,logIn,loading} = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const googleProvider = new GoogleAuthProvider();
+    if(loading){
+        return <Loading></Loading>
+    }
 	//google
 	const handleGoogleSignIn=()=>{
 		googleAuthProvider(googleProvider)
@@ -26,7 +30,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                // setLoginUserEmail(data.email);
             })
             .catch(error => {
                 console.log(error.message)
@@ -40,7 +43,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Email</span></label>
-                        <input type="text"
+                        <input type="email"
                             {...register("email", {
                                 required: "Email Address is required"
                             })}
@@ -52,10 +55,9 @@ const Login = () => {
                         <input type="password"
                             {...register("password", {
                                 required: "Password is required",
-                                minLength: { value: 6, message: 'Password should be atleast 6 characters' }
                             })}
                             className="input input-bordered w-full max-w-xs" />
-                        <label className="label"> <span className="label-text">Forget Password?</span></label>
+                        
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
                     <input className='btn btn-accent w-full' value="Login" type="submit" />
@@ -65,7 +67,7 @@ const Login = () => {
                 </form>
                 <p>Do not have an account?  <Link className='text-secondary' to="/signup">Create new Account</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full' onClick={handleGoogleSignIn}>CONTINUE WITH GOOGLE</button>
+                <button className='btn btn-outline btn-info w-full' onClick={handleGoogleSignIn}>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
