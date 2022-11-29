@@ -10,27 +10,27 @@ const Banner = () => {
       className: "center",
       centerMode: true,
       infinite: true,
-      centerPadding: "20px",
+      centerPadding: "10px",
       slidesToShow: 1,
       speed: 500
     };
     return (
-        <div>
+        <div className='mx-auto'>
         <Slider {...settings}>
           <div>
-            <img src={banner1} alt="" className='w-screen h-[550px]'></img>
+            <img src={banner1} alt="" className='w-screen h-[600px]'></img>
           </div>
           <div>
-          <img src={banner2} alt="" className='w-screen h-[550px]'></img>
+          <img src={banner2} alt="" className='w-screen h-[600px]'></img>
           </div>
           <div>
-          <img src={banner3} alt="" className='w-screen h-[550px]'></img>
+          <img src={banner3} alt="" className='w-screen h-[600px]'></img>
           </div>
           <div>
-          <img src={banner4} alt="" className='w-screen h-[550px]'></img>
+          <img src={banner4} alt="" className='w-screen h-[600px]'></img>
           </div>
           <div>
-          <img src={banner5} alt="" className='w-screen h-[550px]'></img>
+          <img src={banner5} alt="" className='w-screen h-[600px]'></img>
           </div>
           
         </Slider>

@@ -6,10 +6,10 @@ import Nav from '../Pages/Shared/Header/Nav';
 const Main = () => {
     return (
         <div>
-           <Nav></Nav>
-          
-           <Outlet></Outlet>
-     
+         <div className='max-w-[1440px]'>
+         <Nav></Nav> 
+        <Outlet></Outlet>
+        </div>   
            <Footer></Footer>
         </div>
     );
