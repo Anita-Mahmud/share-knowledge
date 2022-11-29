@@ -52,7 +52,7 @@ const Login = () => {
                         <input type="password"
                             {...register("password", {
                                 required: "Password is required",
-                                minLength: { value: 6, message: 'Password must be 6 characters or longer' }
+                                minLength: { value: 6, message: 'Password should be atleast 6 characters' }
                             })}
                             className="input input-bordered w-full max-w-xs" />
                         <label className="label"> <span className="label-text">Forget Password?</span></label>
@@ -63,7 +63,7 @@ const Login = () => {
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>
                 </form>
-                <p>Do not have an account <Link className='text-secondary' to="/signup">Create new Account</Link></p>
+                <p>Do not have an account?  <Link className='text-secondary' to="/signup">Create new Account</Link></p>
                 <div className="divider">OR</div>
                 <button className='btn btn-outline w-full' onClick={handleGoogleSignIn}>CONTINUE WITH GOOGLE</button>
             </div>
