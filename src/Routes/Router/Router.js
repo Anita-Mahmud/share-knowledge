@@ -9,6 +9,7 @@ import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register";
 import AddProduct from "../../Pages/Products/AddProduct";
+import MyProducts from "../../Pages/Products/MyProducts";
 import Products from "../../Pages/Products/Products";
 import Error from "../../Pages/Shared/Error/Error";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path:'/add/product',
                 element:<AddProduct></AddProduct>
+            },
+            {
+                path:'/products',
+                element:<MyProducts></MyProducts>
             },
             
         ]

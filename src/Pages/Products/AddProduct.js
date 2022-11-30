@@ -9,17 +9,17 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const AddProduct = () => {
     const navigate = useNavigate();
-    const {user,loading}=useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const [categories,setCategories] = useState([]);
+    const [categories, setCategories] = useState([]);
     axios.get('http://localhost:5000/categories')
-.then(categories => {
-    setCategories(categories.data);
-});
-if(loading){
-    return <Loading></Loading>
-}
-const imageHostKey = process.env.REACT_APP_imgbb_key;
+        .then(categories => {
+            setCategories(categories.data);
+        });
+    if (loading) {
+        return <Loading></Loading>
+    }
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
     const handleAdd = (data) => {
         const image = data.image[0];
         const formData = new FormData();
@@ -36,40 +36,41 @@ const imageHostKey = process.env.REACT_APP_imgbb_key;
                     // console.log(imgData.data.url);
                     const product = {
                         cat_name: data.cat,
-                        img: data.image,
-                        name:data.product_name,
-                        location:data.location,
-                        resale_price:data.resale_price,
-                        original_price:data.original_price,
-                        used_years:data.year,
-                        seller_name:user.displayName,
+                        img: imgData.data.url,
+                        name: data.product_name,
+                        location: data.location,
+                        resale_price: data.resale_price,
+                        original_price: data.original_price,
+                        used_years: data.year,
+                        seller_name: user.displayName,
+                        description: data.description,
+                        condition: data.condition
 
 
 
                     }
                     fetch('http://localhost:5000/products', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(product)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.acknowledged) {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.acknowledged) {
                     
-                    toast.success('Added');
-                    reset();
-                    navigate('/products');
-                   
-             
+                                toast.success('Added Successfully');
+                                reset();
+                                navigate('/products')
+                               
+                         
+                            }
+                        })
                 }
-                
             })
-            }
-            })
-      
+
     }
     return (
         <div>
@@ -129,12 +130,24 @@ const imageHostKey = process.env.REACT_APP_imgbb_key;
                             <span className="label-text">Categoriey:</span>
 
                         </label>
-                        <select {...register(cat)} className="select select-bordered w-full max-w-xs">
-                        <option disabled selected>Choose</option>
-                       {categories.map(cat=><option key={cat.cat_id} value={cat.cat_name}>{cat.cat_name}</option>) }
-                     
-                    </select>
+                        <select {...register("cat")} className="select select-bordered w-full max-w-xs">
+                            <option disabled selected>Choose</option>
+                            {categories.map(cat => <option key={cat.cat_id} value={cat.cat_name}>{cat.cat_name}</option>)}
 
+                        </select>
+
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Condition:</span>
+
+                        </label>
+                        <select {...register("condition")} className="select select-bordered w-full max-w-xs">
+                            <option disabled selected>Choose</option>
+                            <option>Excellent</option>
+                            <option>Good</option>
+                            <option>Fair</option>
+                        </select>
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
@@ -144,7 +157,7 @@ const imageHostKey = process.env.REACT_APP_imgbb_key;
                         <textarea className="textarea textarea-bordered w-full max-w-xs"  {...register("Description")} />
 
                     </div>
-                    
+
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Years of Use:</span>
