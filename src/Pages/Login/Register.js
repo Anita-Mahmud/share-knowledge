@@ -48,7 +48,24 @@ const Register = () => {
                         .then(() => { })
                         .catch(error => console.error(error))
 
-                }
+                    const user = {
+                        name:data.name,
+                        email:data.email,
+                        role:data.type
+                    }
+                    fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json', 
+                    },
+                    body: JSON.stringify(user)
+                })
+                .then(res => res.json())
+                .then(result =>{
+                    console.log(result);   
+
+                })
+            }
             })
     }
     return (
