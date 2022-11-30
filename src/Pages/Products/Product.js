@@ -23,7 +23,7 @@ const Product = ({ product }) => {
             location: data.location,
             img: product.img
         }
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://share-knowledge-server.vercel.ap/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -46,14 +46,26 @@ const Product = ({ product }) => {
             })
 
     }
-    // const handleClose = data =>{
-    //     data.user_name=" ";
-    //     data.user_email=" ";
-    //     data.product_name=" ";
-    //     data.price=" ";
-    //     data.phone=" ";
-    //     data.location=" ";
-    // }
+   const handleReport = product =>{
+    fetch('https://share-knowledge-server.vercel.ap/report', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.acknowledged) {
+                    
+                                toast.success('Reported Successfully');
+                                
+                               
+                         
+                            }
+                        })
+   }
    
     return (
         <div>
@@ -135,11 +147,14 @@ const Product = ({ product }) => {
 
                                 </div>
                                 <div className="modal-action">
-                               <input className='btn btn-info' onClick={!booking} type="submit" value="Submit" />
+                               <input className='btn btn-info'  type="submit" value="Submit" />
                                     
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div className='flex justify-end'>
+                        <button className='btn btn-info' onClick={()=>handleReport(product)}>Report</button>
                     </div>
                 </div>
             </div>

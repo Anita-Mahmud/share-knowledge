@@ -1,11 +1,14 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const {googleAuthProvider,logIn,loading} = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
@@ -25,7 +28,7 @@ const Login = () => {
                 role:'Buyer'
             }
             console.log(userInfo);
-            fetch('http://localhost:5000/users', {
+            fetch('https://share-knowledge-server.vercel.ap/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json', 
@@ -37,7 +40,7 @@ const Login = () => {
                 console.log(result);   
 
             })
-            
+            navigate(from, {replace: true});
 		})
 		.catch(er=>setLoginError(true));
 	}

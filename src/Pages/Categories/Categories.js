@@ -4,7 +4,7 @@ import Category from './Category';
 
 const Categories = () => {
     const [categories,setCategories] = useState([]);
-    axios.get('http://localhost:5000/categories')
+    axios.get('https://share-knowledge-server.vercel.ap/categories')
 .then(categories => {
     setCategories(categories.data);
 });

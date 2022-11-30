@@ -11,6 +11,7 @@ import Register from "../../Pages/Login/Register";
 import AddProduct from "../../Pages/Products/AddProduct";
 import MyProducts from "../../Pages/Products/MyProducts";
 import Products from "../../Pages/Products/Products";
+import Report from "../../Pages/Report/Report";
 import Error from "../../Pages/Shared/Error/Error";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
             {
                 path:'/category/:id',
                 element:<PrivateRoute><Products></Products></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+                loader:({params})=>fetch(`https://share-knowledge-server.vercel.ap/category/${params.id}`)
                
             },
             {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path:'/products',
                 element:<MyProducts></MyProducts>
+            },
+            {
+                path:'/report',
+                element:<Report></Report>
             },
             
         ]
