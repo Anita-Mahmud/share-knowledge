@@ -7,13 +7,18 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AuthProvider from './context/AuthProvider';
 import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      
    <AuthProvider>
    <App />
    <Toaster />
    </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

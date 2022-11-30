@@ -17,6 +17,7 @@ const Nav = () => {
     <li><Link to='/blog'>Blog</Link></li>
     {user?.uid ?
             <>
+               
                 <li><button onClick={handleLogOut}>Log out</button></li>
               
             </>
