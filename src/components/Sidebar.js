@@ -10,9 +10,14 @@ const Sidebar = () => {
     return (
         <div>
             <div className="btn-group btn-group-vertical">
-                {isAdmin && <button className="btn">Button11</button>}
-               { isSeller && <><button className="btn">Button</button>
-                <button className="btn">Button</button></>}
+                {isAdmin && <>
+                    <button className="btn"><Link to='/all/sellers'>All Sellers</Link></button>
+                    <button className="btn"><Link to='/all/buyers'>All Buyers</Link></button>
+                    <button className="btn"><Link to='/report'>Reported Items</Link></button>
+                </>}
+               { isSeller && <>
+               <button className="btn"><Link to='/add/product'>Add a Product</Link></button>
+                <button className="btn"><Link to='/products'>My Products</Link></button></>}
                 {!isAdmin && !isSeller &&<>
                     <button className="btn"><Link to='/orders'>My Orders</Link></button>
                 </>}

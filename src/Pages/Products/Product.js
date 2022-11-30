@@ -21,6 +21,7 @@ const Product = ({ product }) => {
             price: data.price,
             phone: data.phone,
             location: data.location,
+            img: product.img
         }
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
