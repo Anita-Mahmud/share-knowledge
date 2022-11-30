@@ -19,6 +19,25 @@ const Login = () => {
 		.then(result=>{
 			const user = result.user;
             
+            const userInfo = {
+                name:user.displayName,
+                email:user.email,
+                role:'Buyer'
+            }
+            console.log(userInfo);
+            fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json', 
+                },
+                body: JSON.stringify(userInfo)
+            })
+            .then(res => res.json())
+            .then(result =>{
+                console.log(result);   
+
+            })
+            
 		})
 		.catch(er=>setLoginError(true));
 	}
