@@ -4,7 +4,7 @@ import Items from './Items';
 
 const Advertise = () => {
     const [advertises,setAdvertises] = useState([]);
-    axios.get('https://share-knowledge-server.vercel.ap/advertise')
+    axios.get('http://localhost:5000/advertise')
 .then(advertises => {
     setAdvertises(advertises.data);
 });

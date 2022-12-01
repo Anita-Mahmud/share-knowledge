@@ -5,7 +5,7 @@ const useAdmin = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`https://share-knowledge-server.vercel.ap/users/admin/${email}`)
+            fetch(`http://localhost:5000/users/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

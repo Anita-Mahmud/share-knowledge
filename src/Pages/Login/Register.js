@@ -53,7 +53,7 @@ const Register = () => {
                         email:data.email,
                         role:data.type
                     }
-                    fetch('https://share-knowledge-server.vercel.ap/users', {
+                    fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 

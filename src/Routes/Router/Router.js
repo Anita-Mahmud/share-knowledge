@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import Categories from "../../Pages/Categories/Categories";
 import Buyers from "../../Pages/Dashboard/Buyers/Buyers";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import Orders from "../../Pages/Dashboard/Orders/Orders";
@@ -27,9 +28,13 @@ const router = createBrowserRouter([
                 element:<Home></Home>
             },
             {
+                path:'/categories',
+                element:<Categories></Categories>
+            },
+            {
                 path:'/category/:id',
                 element:<PrivateRoute><Products></Products></PrivateRoute>,
-                loader:({params})=>fetch(`https://share-knowledge-server.vercel.ap/category/${params.id}`)
+                loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)
                
             },
             {

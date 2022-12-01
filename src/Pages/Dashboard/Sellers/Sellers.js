@@ -5,7 +5,7 @@ import Loading from '../../../components/Loading';
 import Sidebar from '../../../components/Sidebar';
 
 const Sellers = () => {
-    const url = 'https://share-knowledge-server.vercel.ap/users/sellers';
+    const url = 'http://localhost:5000/users/sellers';
 
     const { data: sellers = [],isLoading,refetch } = useQuery({
         queryKey: ['sellers'],
@@ -19,7 +19,7 @@ const Sellers = () => {
         return <Loading></Loading>
     }
     const handleDelete = id =>{
-        fetch(`https://share-knowledge-server.vercel.ap/users/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -31,15 +31,15 @@ const Sellers = () => {
         })
     }
     const handleVerify = id =>{
-        fetch(`https://share-knowledge-server.vercel.ap/products/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
             method: 'PUT', 
-           
+        
         })
         .then(res => res.json())
         .then(data => {
             if(data.modifiedCount > 0){
-                toast.success('Verified')
-               
+                toast.success('Verified successful.')
+                refetch();
             }
         })
     }
@@ -67,7 +67,7 @@ const Sellers = () => {
                                     <td>{seller.name}</td>
                                     <td>{seller.email} </td>
                                     <td><button className='btn btn-info' onClick={()=>handleDelete(seller._id)}>Delete</button>
-                                    <button className='btn btn-info' onClick={()=>handleVerify(seller._id)}>Verify</button></td>
+                                    <button className='btn btn-info' onClick={()=>handleVerify(seller._id)}>{!seller.verified?'Verify':'Verified'}</button></td>
                                 </tr>
                                 )}
                         </tbody>

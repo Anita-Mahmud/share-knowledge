@@ -14,6 +14,7 @@ const Nav = () => {
     }
     const menuItems = <>
     <li><Link to='/'>Home</Link></li>
+    <li><Link to='/categories'>Category</Link></li>
     <li><Link to='/blog'>Blog</Link></li>
     {user?.uid ?
             <>

@@ -28,7 +28,7 @@ const Login = () => {
                 role:'Buyer'
             }
             console.log(userInfo);
-            fetch('https://share-knowledge-server.vercel.ap/users', {
+            fetch('http://localhost:5000/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json', 
@@ -52,6 +52,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, {replace: true});
             })
             .catch(error => {
                 console.log(error.message)

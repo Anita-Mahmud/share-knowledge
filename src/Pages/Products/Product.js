@@ -23,7 +23,7 @@ const Product = ({ product }) => {
             location: data.location,
             img: product.img
         }
-        fetch('https://share-knowledge-server.vercel.ap/bookings', {
+        fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -36,7 +36,6 @@ const Product = ({ product }) => {
                 if (data.acknowledged) {
                     
                     toast.success('Booking confirmed');
-                    reset()
                    
              
                 }
@@ -47,24 +46,7 @@ const Product = ({ product }) => {
 
     }
    const handleReport = product =>{
-    fetch('https://share-knowledge-server.vercel.ap/report', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(product)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data);
-                            if (data.acknowledged) {
-                    
-                                toast.success('Reported Successfully');
-                                
-                               
-                         
-                            }
-                        })
+   
    }
    
     return (

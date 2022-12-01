@@ -12,7 +12,7 @@ const AddProduct = () => {
     const { user, loading } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [categories, setCategories] = useState([]);
-    axios.get('https://share-knowledge-server.vercel.ap/categories')
+    axios.get('http://localhost:5000/categories')
         .then(categories => {
             setCategories(categories.data);
         });
@@ -49,7 +49,7 @@ const AddProduct = () => {
 
 
                     }
-                    fetch('https://share-knowledge-server.vercel.ap/products', {
+                    fetch('http://localhost:5000/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

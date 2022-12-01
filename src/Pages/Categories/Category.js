@@ -11,7 +11,7 @@ const Category = ({category}) => {
                     <h2 className="card-title text-4xl font-bold text-white">{cat_name}</h2>
                    
                     <div className="card-actions tooltip tooltip-right tooltip-info" data-tip="Details">
-                   <Link to={`/category/${cat_id}`}> <ArrowLongRightIcon className="w-20 text-blue-300"/></Link>
+                   <Link to={`/category/${cat_name}`}> <ArrowLongRightIcon className="w-20 text-blue-300"/></Link>
                     </div>
                 </div>
             </div>

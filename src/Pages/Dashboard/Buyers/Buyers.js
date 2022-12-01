@@ -5,7 +5,7 @@ import Loading from '../../../components/Loading';
 import Sidebar from '../../../components/Sidebar';
 
 const Buyers = () => {
-    const url = 'https://share-knowledge-server.vercel.ap/users/buyers';
+    const url = 'http://localhost:5000/users/buyers';
 
     const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
@@ -19,7 +19,7 @@ const Buyers = () => {
         return <Loading></Loading>
     }
     const handleDelete = id => {
-        fetch(`https://share-knowledge-server.vercel.ap/users/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

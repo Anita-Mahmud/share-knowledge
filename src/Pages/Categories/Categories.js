@@ -1,13 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
+import Loading from '../../components/Loading';
 import Category from './Category';
 
 const Categories = () => {
-    const [categories,setCategories] = useState([]);
-    axios.get('https://share-knowledge-server.vercel.ap/categories')
-.then(categories => {
-    setCategories(categories.data);
-});
+//     const [categories,setCategories] = useState([]);
+//     axios.get('http://localhost:5000/categories')
+// .then(categories => {
+//     setCategories(categories.data);
+// });
+const url = 'http://localhost:5000/categories';
+    const { data: categories = [],isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data;
+        }
+    })
+    if(isLoading){
+        return <Loading></Loading>
+    }
 console.log(categories);
     return (
         <div className='my-20'>
