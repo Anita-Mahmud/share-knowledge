@@ -1,3 +1,4 @@
+import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
@@ -66,8 +67,9 @@ const Sellers = () => {
                                     <th>{i + 1}</th>
                                     <td>{seller.name}</td>
                                     <td>{seller.email} </td>
-                                    <td><button className='btn btn-info' onClick={()=>handleDelete(seller._id)}>Delete</button>
-                                    <button className='btn btn-info' onClick={()=>handleVerify(seller._id)}>{!seller.verified?'Verify':'Verified'}</button></td>
+                                    <td className='flex justify-center'>
+                                        <button className='btn btn-info mr-2' onClick={()=>handleDelete(seller._id)}>Delete</button>
+                                    {!seller.verified?<button className='btn btn-info' onClick={()=>handleVerify(seller._id)}>verify</button>:<CheckBadgeIcon className='text-blue-500 w-12'></CheckBadgeIcon>}</td>
                                 </tr>
                                 )}
                         </tbody>

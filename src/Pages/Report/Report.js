@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
 
 const Report = () => {
-    const navigate = useNavigate();
+   
     const [reports,setReports] = useState([]);
     axios.get('http://localhost:5000/report')
 .then(reports => {

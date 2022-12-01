@@ -1,4 +1,5 @@
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -6,14 +7,20 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Product = ({ product }) => {
-    const { user,setLoading,loading } = useContext(AuthContext);
+    const { user, setLoading, loading } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [booking,setBooking] = useState(true);
-    const { register, formState: { errors }, handleSubmit ,reset} = useForm();
+    const [booking, setBooking] = useState(true);
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const { _id, cat_name, cat_id, img, name, location, resale_price, original_price, used_years, posted_on, seller_name, verified } = product;
-   
+
+    const [verify, setVerify] = useState([]);
+    axios.get('http://localhost:5000/users')
+        .then(verify => {
+            setVerify(verify.data);
+        });
+        console.log(verify);
     const handleBook = data => {
-     
+
         const booking = {
             user_name: data.user_name,
             user_email: data.user_email,
@@ -34,10 +41,10 @@ const Product = ({ product }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    
+
                     toast.success('Booking confirmed');
-                   
-             
+
+
                 }
                 else {
                     toast.error(data.message);
@@ -45,10 +52,20 @@ const Product = ({ product }) => {
             })
 
     }
-   const handleReport = product =>{
-   
-   }
-   
+    const handleReport = id => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'PUT', 
+        
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Reported successful.')
+               
+            }
+        })
+    }
+
     return (
         <div>
             <div className="card lg:card-side shadow-xl ">
@@ -63,7 +80,7 @@ const Product = ({ product }) => {
                     <div className='flex items-center'>
                         <h5><span>Seller:</span> {seller_name}</h5>
                         {
-                            verified ? <CheckBadgeIcon className='w-6 ml-2 text-blue-400'></CheckBadgeIcon> : ''
+                          product.verified?'yes':'no'
                         }
                     </div>
                     <div className="card-actions justify-end">
@@ -129,14 +146,14 @@ const Product = ({ product }) => {
 
                                 </div>
                                 <div className="modal-action">
-                               <input className='btn btn-info'  type="submit" value="Submit" />
-                                    
+                                    <input className='btn btn-info' type="submit" value="Submit" />
+
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div className='flex justify-end'>
-                        <button className='btn btn-info' onClick={()=>handleReport(product)}>Report</button>
+                        <button className='btn btn-info' onClick={() => handleReport(_id)}>Report</button>
                     </div>
                 </div>
             </div>
