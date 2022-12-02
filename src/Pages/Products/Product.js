@@ -71,7 +71,7 @@ const Product = ({ product, productItem, setProductItem }) => {
 
     return (
         <div>
-           {!paid&& <div className="card lg:card-side shadow-xl ">
+           {!paid && <div className="card lg:card-side shadow-xl ">
                 <figure><img src={img} alt={name} className='w-full h-96' /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
