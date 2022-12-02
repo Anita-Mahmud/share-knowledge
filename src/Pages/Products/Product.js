@@ -5,66 +5,69 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import Booking from './Booking';
 
-const Product = ({ product }) => {
-  
+const Product = ({ product, productItem, setProductItem }) => {
+      console.log(productItem);
     const { user, setLoading, loading } = useContext(AuthContext);
     const navigate = useNavigate();
     const [booking, setBooking] = useState(true);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const { _id, cat_name, cat_id, img, name, location, resale_price, original_price, used_years, posted_on, seller_name, verified } = product;
 
-    const [verify, setVerify] = useState([]);
-    axios.get('http://localhost:5000/users')
-        .then(verify => {
-            setVerify(verify.data);
-        });
-        console.log(verify);
-    const handleBook = data => {
-        const booking = {
-            user_name: user.displayName,
-            user_email: user.displayName,
-            product_id:_id,
-            product_name: name,
-            price: resale_price,
-            phone: data.phone,
-            location: location,
-            img: img
-        }
-        // console.log(booking);
-        fetch('http://localhost:5000/bookings', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(booking)
+    // const [verify, setVerify] = useState([]);
+    // axios.get('http://localhost:5000/users')
+    //     .then(verify => {
+    //         setVerify(verify.data);
+    //     });
+    //     // console.log(verify);
+    // const handleBook = data => {
+    //     const booking = {
+    //         user_name: user.displayName,
+    //         user_email: user.email,
+    //         product_id:_id,
+    //         product_name: name,
+    //         price: resale_price,
+    //         phone: data.phone,
+    //         location: location,
+    //         img: img
+    //     }
+    //     // console.log(booking);
+    //     fetch('http://localhost:5000/bookings', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(booking)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data);
+    //             if (data.acknowledged) {
+
+    //                 toast.success('Booking confirmed');
+
+
+    //             }
+
+    //         })
+
+    // }
+   
+    const handleReport = id => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'PUT',
+
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.acknowledged) {
-
-                    toast.success('Booking confirmed');
-
+                if (data.modifiedCount > 0) {
+                    toast.success('Reported successful.')
 
                 }
-                
             })
+    }
 
-    }
-    const handleReport = id => {
-        fetch(`http://localhost:5000/products/${id}`, {
-            method: 'PUT', 
-        
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.modifiedCount > 0){
-                toast.success('Reported successful.')
-               
-            }
-        })
-    }
 
     return (
         <div>
@@ -80,78 +83,56 @@ const Product = ({ product }) => {
                     <div className='flex items-center'>
                         <h5><span>Seller:</span> {seller_name}</h5>
                         {
-                          verified?<CheckBadgeIcon className='text-blue-500 w-6 ml-2'></CheckBadgeIcon>:''
+                            verified ? <CheckBadgeIcon className='text-blue-500 w-6 ml-2'></CheckBadgeIcon> : ''
                         }
                     </div>
                     <div className="card-actions justify-end">
-                        <label htmlFor="book-modal" className="btn btn-primary">Book Now</label>
+                        <label htmlFor="book-modal" onClick={() => setProductItem(product)} className="btn btn-primary">Book Now</label>
 
                     </div>
                     {/* modal */}
                     {/* Put this part before </body> tag */}
-                    <input type="checkbox" id="book-modal" className="modal-toggle" />
+                    {/* <input type="checkbox" id="book-modal" className="modal-toggle" />
                     <div className="modal">
                         <div className="modal-box">
                             <h3 className="font-bold text-lg">Booking </h3>
                             <label htmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                             <form onSubmit={handleSubmit(handleBook)}>
-                                <div className="form-control w-full max-w-xs">
+                                <div className="form-control w-full ">
                                     <label className="label">
                                         <span className="label-text">Buyer:</span>
 
                                     </label>
-                                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={user?.displayName} readOnly />
+                                    <input type="text" placeholder="Type here" className="input input-bordered w-full " defaultValue={user?.displayName} readOnly />
 
                                 </div>
-                                <div className="form-control w-full max-w-xs">
+                                <div className="form-control w-full ">
                                     <label className="label">
                                         <span className="label-text">Email:</span>
 
                                     </label>
-                                    <input type="text"  placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={user?.email} readOnly />
+                                    <input type="text" placeholder="Type here" className="input input-bordered w-full " defaultValue={user?.email} readOnly />
 
                                 </div>
-                                <div className="form-control w-full max-w-xs">
+                                <div className="form-control w-full ">
                                     <label className="label">
                                         <span className="label-text">Item:</span>
 
                                     </label>
-                                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={name} readOnly />
+                                    <input type="text" placeholder="Type here" className="input input-bordered w-full " defaultValue={name} readOnly />
 
                                 </div>
-                                <div className="form-control w-full max-w-xs">
-                                    <label className="label">
-                                        <span className="label-text">Price:</span>
-
-                                    </label>
-                                    <input type="text"  placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={resale_price} readOnly />
-
-                                </div>
-                                <div className="form-control w-full max-w-xs">
-                                    <label className="label">
-                                        <span className="label-text">Phone:</span>
-
-                                    </label>
-                                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs"  {...register("phone", {
-                                        required: "Phone is required"
-                                    })} />
-
-                                </div>
-                                <div className="form-control w-full max-w-xs">
-                                    <label className="label">
-                                        <span className="label-text">Location:</span>
-
-                                    </label>
-                                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={location} />
-
-                                </div>
+                                
                                 <div className="modal-action">
                                     <input className='btn btn-info' type="submit" value="Submit" />
 
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> */}
+                    {
+                        productItem && <Booking productItem={productItem} setProductItem={setProductItem}></Booking>
+                    }
                     <div className='flex justify-end'>
                         <button className='btn btn-info' onClick={() => handleReport(_id)}>Report</button>
                     </div>

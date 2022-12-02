@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom';
 const Category = ({category}) => {
-    const {cat_id,cat_name,img}=category;
+    const {cat_id,cat_name,img,_id}=category;
     return (
         <div className='mt-10'>
             <div className="card bg-base-100 shadow-xl image-full h-96">

@@ -11,9 +11,8 @@ const Advertise = () => {
     return (
         <div className='my-20'>
             {
-                advertises.length>0?
+                advertises.length>0 ? 
                 <div >
-                    <h2 className='font-lobster text-6xl italic text-center'>Advertised Items</h2>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-20'>
                     {advertises.map(advertise=><Items 
                     key={advertise._id} advertise={advertise}
