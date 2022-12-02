@@ -31,26 +31,19 @@ const MyProducts = () => {
             }
         })
     }
-    const handleAdvertise = product =>{
-        // console.log(product);
-        fetch('http://localhost:5000/advertise', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(product)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data);
-                            if (data.acknowledged) {
-                    
-                                toast.success('Advertised Successfully');
-                                
-                               
-                         
-                            }
-                        })
+    const handleAdvertise = id =>{
+        fetch(`http://localhost:5000/allproducts/${id}`, {
+            method: 'PUT', 
+        
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Advertised successful.')
+
+               
+            }
+        })
     }
     return (
         <div className='mx-36'>
@@ -88,7 +81,7 @@ products.map((product, i) => <tr key={product._id}>
                                 <td>{!product.paid ? 'Available':'Sold'} </td>
                                 <td><button className='btn btn-info'onClick={()=>handleDelete(product._id)}>Delete</button></td>
                                 <td>{!product.paid ?
-                                <button className='btn btn-info' onClick={()=>handleAdvertise(product)}>Advertise</button>:''}</td>
+                                <button className='btn btn-info' onClick={()=>handleAdvertise(product._id)}>Advertise</button>:''}</td>
                                 </tr>
                             )}
                     </tbody>

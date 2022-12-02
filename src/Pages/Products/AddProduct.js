@@ -43,6 +43,7 @@ const AddProduct = () => {
                         original_price: data.original_price,
                         used_years: data.year,
                         seller_name: user.displayName,
+                        seller_email: user.email,
                         description: data.description,
                         condition: data.condition
 
@@ -154,7 +155,7 @@ const AddProduct = () => {
                             <span className="label-text">Description:</span>
 
                         </label>
-                        <textarea className="textarea textarea-bordered w-full max-w-xs"  {...register("Description")} />
+                        <textarea className="textarea textarea-bordered w-full max-w-xs"  {...register("description")} />
 
                     </div>
 

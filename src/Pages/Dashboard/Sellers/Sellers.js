@@ -31,8 +31,9 @@ const Sellers = () => {
             }
         })
     }
-    const handleVerify = id =>{
-        fetch(`http://localhost:5000/users/${id}`, {
+    const handleVerify = email =>{
+        console.log(email);
+        fetch(`http://localhost:5000/users/${email}`, {
             method: 'PUT', 
         
         })
@@ -69,7 +70,7 @@ const Sellers = () => {
                                     <td>{seller.email} </td>
                                     <td className='flex justify-center'>
                                         <button className='btn btn-info mr-2' onClick={()=>handleDelete(seller._id)}>Delete</button>
-                                    {!seller.verified?<button className='btn btn-info' onClick={()=>handleVerify(seller._id)}>verify</button>:<CheckBadgeIcon className='text-blue-500 w-12'></CheckBadgeIcon>}</td>
+                                    {!seller.verified?<button className='btn btn-info' onClick={()=>handleVerify(seller.email)}>verify</button>:<CheckBadgeIcon className='text-blue-500 w-12'></CheckBadgeIcon>}</td>
                                 </tr>
                                 )}
                         </tbody>

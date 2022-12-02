@@ -46,9 +46,7 @@ const Product = ({ product }) => {
 
 
                 }
-                else {
-                    toast.error(data.message);
-                }
+                
             })
 
     }
@@ -80,7 +78,7 @@ const Product = ({ product }) => {
                     <div className='flex items-center'>
                         <h5><span>Seller:</span> {seller_name}</h5>
                         {
-                          product.verified?'yes':'no'
+                          verified?<CheckBadgeIcon className='text-blue-500 w-6 ml-2'></CheckBadgeIcon>:''
                         }
                     </div>
                     <div className="card-actions justify-end">
