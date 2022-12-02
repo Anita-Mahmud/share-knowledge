@@ -6,11 +6,11 @@ import Category from './Category';
 
 const Categories = () => {
 //     const [categories,setCategories] = useState([]);
-//     axios.get('http://localhost:5000/categories')
+//     axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/categories')
 // .then(categories => {
 //     setCategories(categories.data);
 // });
-const url = 'http://localhost:5000/categories';
+const url = 'https://share-knowledge-server-anita-mahmud.vercel.app/categories';
     const { data: categories = [],isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
@@ -24,7 +24,7 @@ const url = 'http://localhost:5000/categories';
     }
 console.log(categories);
     return (
-        <div className='my-20'>
+        <div className='my-20 '>
             <h2 className='font-lobster text-6xl italic text-center'>Categories</h2>
            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             {categories.map(category=><Category

@@ -6,7 +6,7 @@ import Loading from '../../../components/Loading';
 import Sidebar from '../../../components/Sidebar';
 
 const Sellers = () => {
-    const url = 'http://localhost:5000/users/sellers';
+    const url = 'https://share-knowledge-server-anita-mahmud.vercel.app/users/sellers';
 
     const { data: sellers = [],isLoading,refetch } = useQuery({
         queryKey: ['sellers'],
@@ -20,7 +20,7 @@ const Sellers = () => {
         return <Loading></Loading>
     }
     const handleDelete = id =>{
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/users/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -33,13 +33,14 @@ const Sellers = () => {
     }
     const handleVerify = email =>{
         console.log(email);
-        fetch(`http://localhost:5000/users/${email}`, {
+        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/users/${email}`, {
             method: 'PUT',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            } 
+            // headers: {
+            //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+            // } 
         
-        })
+        }
+        )
         .then(res => res.json())
         .then(data => {
             if(data.modifiedCount > 0){
@@ -49,10 +50,12 @@ const Sellers = () => {
         })
     }
     return (
-        <div className='mx-36'>
+        <div className='grid grid-cols-1 md:grid-cols-3 mt-10 mb-36'>
+            <div className='mx-auto'>
             <Sidebar></Sidebar>
-            <div>
-                <h2 className='font-lobster text-6xl text-center'>All Sellers</h2>
+            </div>
+            <div className='col-span-2'>
+                <h2 className='font-lobster text-6xl text-center mb-4'>All Sellers</h2>
 
                 {sellers.length > 0 ?
                     <table className="table w-full text-center">

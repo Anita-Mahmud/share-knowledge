@@ -9,3 +9,4 @@ Details:
 3. Any valid user can buy and sell things
 4. It is built with react js, tailwind css, daisy ui
 5. Authentication has been done with firebase and for database mongodb is used
+6. For payment stripe is used

@@ -7,12 +7,12 @@ import Sidebar from '../../components/Sidebar';
 const Report = () => {
    
     const [reports,setReports] = useState([]);
-    axios.get('http://localhost:5000/report')
+    axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/report')
 .then(reports => {
     setReports(reports.data);
 });
 const handleDelete = id =>{
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/products/${id}`, {
         method: 'DELETE'
     })
     .then(res => res.json())
@@ -24,7 +24,7 @@ const handleDelete = id =>{
            
         }
     })
-//     fetch(`http://localhost:5000/report/${id}`, {
+//     fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/report/${id}`, {
 //         method: 'DELETE'
 //     })
 //     .then(res => res.json())
@@ -34,10 +34,12 @@ const handleDelete = id =>{
 }
 
     return (
-        <div className='mx-36'>
-        <Sidebar></Sidebar>
-        <div>
-            <h2 className='font-lobster text-6xl text-center'>Reported Items</h2>
+        <div className='grid grid-cols-1 md:grid-cols-3 mt-10 mb-36'>
+        <div className='mx-auto'>
+            <Sidebar></Sidebar>
+            </div>
+        <div className='col-span-2'>
+            <h2 className='font-lobster text-6xl text-center mb-4'>Reported Items</h2>
 
             {reports.length > 0 ?
                 <table className="table w-full text-center">
@@ -68,7 +70,7 @@ reports.map((report, i) => <tr key={report._id}>
                     </tbody>
                 </table>
 
-                : <h3 className='text-red-600 text-5xl text-center'>No Order</h3>}
+                : <h3 className='text-red-600 text-5xl text-center'>No Items</h3>}
         </div>
 
     </div>

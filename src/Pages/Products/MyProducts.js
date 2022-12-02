@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const MyProducts = () => {
     const {user} = useContext(AuthContext);
-    const url = `http://localhost:5000/products?name=${user?.displayName}`;
+    const url = `https://share-knowledge-server-anita-mahmud.vercel.app/products?name=${user?.displayName}`;
     const { data: products = [],refetch,isLoading } = useQuery({
         queryKey: ['products', user?.displayName],
         queryFn: async () => {
@@ -20,7 +20,7 @@ const MyProducts = () => {
         return <Loading></Loading>
     }
     const handleDelete = id =>{
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/products/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -32,11 +32,11 @@ const MyProducts = () => {
         })
     }
     const handleAdvertise = id =>{
-        fetch(`http://localhost:5000/allproducts/${id}`, {
+        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/allproducts/${id}`, {
             method: 'PUT', 
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
+            // headers: {
+            //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+            // }
         
         })
         .then(res => res.json())
@@ -49,10 +49,12 @@ const MyProducts = () => {
         })
     }
     return (
-        <div className='mx-36'>
-        <Sidebar></Sidebar>
-        <div>
-            <h2 className='font-lobster text-6xl text-center'>My Products</h2>
+        <div className='grid grid-cols-1 md:grid-cols-3 mt-10 '>
+      <div className='mx-auto'>
+            <Sidebar></Sidebar>
+            </div>
+        <div className='col-span-2'>
+            <h2 className='font-lobster text-6xl text-center mb-4'>My Products</h2>
 
             {products.length > 0 ?
                 <table className="table w-full text-center">
@@ -90,7 +92,7 @@ products.map((product, i) => <tr key={product._id}>
                     </tbody>
                 </table>
 
-                : <h3 className='text-red-600 text-5xl text-center'>No Order</h3>}
+                : <h3 className='text-red-600 text-5xl text-center'>No Products Added</h3>}
         </div>
 
     </div>

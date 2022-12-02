@@ -21,11 +21,11 @@ const Booking = ({ productItem, setProductItem }) => {
             img: img
         }
         // console.log(booking);
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://share-knowledge-server-anita-mahmud.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(booking)
         })

@@ -12,7 +12,7 @@ const AddProduct = () => {
     const { user, loading } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [categories, setCategories] = useState([]);
-    axios.get('http://localhost:5000/categories')
+    axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/categories')
         .then(categories => {
             setCategories(categories.data);
         });
@@ -50,7 +50,7 @@ const AddProduct = () => {
 
 
                     }
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://share-knowledge-server-anita-mahmud.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -79,92 +79,92 @@ const AddProduct = () => {
             <h2 className='font-lobster text-6xl text-center'>Add a Product</h2>
             <div className='flex justify-center'>
                 <form onSubmit={handleSubmit(handleAdd)}>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Product Name</span>
 
                         </label>
-                        <input type="text" {...register("product_name")} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" {...register("product_name")} placeholder="Type here" className="input input-bordered w-full " />
 
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Original Price:</span>
 
                         </label>
-                        <input type="text" {...register("original_price")} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" {...register("original_price")} placeholder="Type here" className="input input-bordered w-full " />
 
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Resale Price:</span>
 
                         </label>
-                        <input type="text" {...register("resale_price")} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" {...register("resale_price")} placeholder="Type here" className="input input-bordered w-full " />
 
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Phone:</span>
 
                         </label>
-                        <input type="text" {...register("phone")} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" {...register("phone")} placeholder="Type here" className="input input-bordered w-full " />
 
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Location</span>
 
                         </label>
-                        <input type="text" {...register("location")} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" {...register("location")} placeholder="Type here" className="input input-bordered w-full " />
 
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label"><span className="label-text">Image</span></label>
                         <input type="file" {...register("image", {
                             required: "Image is Required"
                         })} className="input input-bordered w-full " />
                         {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Categoriey:</span>
 
                         </label>
-                        <select {...register("cat")} className="select select-bordered w-full max-w-xs">
+                        <select {...register("cat")} className="select select-bordered w-full ">
                             <option disabled selected>Choose</option>
                             {categories.map(cat => <option key={cat.cat_id} value={cat.cat_name}>{cat.cat_name}</option>)}
 
                         </select>
 
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Condition:</span>
 
                         </label>
-                        <select {...register("condition")} className="select select-bordered w-full max-w-xs">
+                        <select {...register("condition")} className="select select-bordered w-full ">
                             <option disabled selected>Choose</option>
                             <option>Excellent</option>
                             <option>Good</option>
                             <option>Fair</option>
                         </select>
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Description:</span>
 
                         </label>
-                        <textarea className="textarea textarea-bordered w-full max-w-xs"  {...register("description")} />
+                        <textarea className="textarea textarea-bordered w-full "  {...register("description")} />
 
                     </div>
 
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text">Years of Use:</span>
 
                         </label>
-                        <input type="text" {...register("year")} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" {...register("year")} placeholder="Type here" className="input input-bordered w-full " />
 
                     </div>
                     <div>

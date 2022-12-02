@@ -5,7 +5,7 @@ import Loading from '../../../components/Loading';
 import Sidebar from '../../../components/Sidebar';
 
 const Buyers = () => {
-    const url = 'http://localhost:5000/users/buyers';
+    const url = 'https://share-knowledge-server-anita-mahmud.vercel.app/users/buyers';
 
     const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
@@ -19,7 +19,7 @@ const Buyers = () => {
         return <Loading></Loading>
     }
     const handleDelete = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/users/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -31,10 +31,12 @@ const Buyers = () => {
             })
     }
     return (
-        <div className='mx-36'>
+        <div className='grid grid-cols-1 md:grid-cols-3 mt-10 mb-36'>
+           <div className='mx-auto'>
             <Sidebar></Sidebar>
-            <div>
-                <h2 className='font-lobster text-6xl text-center'>All Buyers</h2>
+            </div>
+            <div className='col-span-2'>
+                <h2 className='font-lobster text-6xl text-center mb-4'>All Buyers</h2>
 
                 {buyers.length > 0 ?
                     <table className="table w-full text-center">

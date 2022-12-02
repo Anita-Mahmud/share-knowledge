@@ -18,9 +18,9 @@ const Login = () => {
     if(loading){
         return <Loading></Loading>
     }
-    if (token) {
-        navigate(from, { replace: true });
-    }
+    // if (token) {
+    //     navigate(from, { replace: true });
+    // }
 	//google
 	const handleGoogleSignIn=()=>{
 		googleAuthProvider(googleProvider)
@@ -33,7 +33,7 @@ const Login = () => {
                 role:'Buyer'
             }
             console.log(userInfo);
-            fetch('http://localhost:5000/users', {
+            fetch('https://share-knowledge-server-anita-mahmud.vercel.app/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json', 
@@ -42,7 +42,8 @@ const Login = () => {
             })
             .then(res => res.json())
             .then(result =>{
-                console.log(result);   
+                console.log(result);  
+                navigate(from, { replace: true }); 
 
             })
          
@@ -57,6 +58,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
                 setLoginEmail(user.email);
                 
             })

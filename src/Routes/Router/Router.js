@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path:'/category/:id',
                 element:<PrivateRoute><Products></Products></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+                loader:({params})=>fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/category/${params.id}`)
                
             },
             {
@@ -44,36 +44,36 @@ const router = createBrowserRouter([
             },
             {
                 path:'/dashboard',
-                element:<Dashboard></Dashboard>
+                element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
             },
             {
                 path:'/orders',
-                element:<Orders></Orders>
+                element:<PrivateRoute><Orders></Orders></PrivateRoute>
             },
             {
                 path:'/all/sellers',
-                element:<Sellers></Sellers>
+                element:<PrivateRoute><Sellers></Sellers></PrivateRoute>
             },
             {
                 path:'/all/buyers',
-                element:<Buyers></Buyers>
+                element:<PrivateRoute><Buyers></Buyers></PrivateRoute>
             },
             {
                 path:'/add/product',
-                element:<AddProduct></AddProduct>
+                element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>
             },
             {
                 path:'/products',
-                element:<MyProducts></MyProducts>
+                element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
             },
             {
                 path:'/report',
-                element:<Report></Report>
+                element:<PrivateRoute><Report></Report></PrivateRoute>
             },
             {
                 path:'/payment/:id',
-                element:<Payment></Payment>,
-                loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
+                element:<PrivateRoute><Payment></Payment></PrivateRoute>,
+                loader:({params})=>fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/bookings/${params.id}`)
             }
             
         ]

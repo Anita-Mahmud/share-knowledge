@@ -5,7 +5,7 @@ const Review = () => {
         <div>
             <h2 className='font-lobster text-6xl italic text-center'>Reviews</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-                <div className="card w-96 bg-base-100 shadow-xl my-10">
+                <div className="card w-96 bg-base-100 shadow-md shadow-blue-500  my-10 mx-auto">
                     <div className="card-body mx-auto">
                         <div className="avatar">
                             <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -17,7 +17,7 @@ const Review = () => {
 
                     </div>
                 </div>
-                <div className="card w-96 bg-base-100 shadow-xl my-10">
+                <div className="card w-96 bg-base-100 shadow-md shadow-blue-500  my-10 mx-auto">
                     <div className="card-body mx-auto">
                         <div className="avatar placeholder">
                             <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -29,7 +29,7 @@ const Review = () => {
 
                     </div>
                 </div>
-                <div className="card w-96 bg-base-100 shadow-xl my-10">
+                <div className="card w-96 bg-base-100 shadow-md shadow-blue-500  my-10 mx-auto">
                     <div className="card-body mx-auto">
                         <div className="avatar">
                             <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

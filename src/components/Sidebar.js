@@ -9,17 +9,18 @@ const Sidebar = () => {
     const [isSeller] = useSeller(user?.email);
     return (
         <div>
-            <div className="btn-group btn-group-vertical">
+            <div className="btn-group btn-group-vertical mx-auto lg:mx-0 ">
+            <button className="btn btn-info my-4 px-20 py-2"><Link to='/dashboard'>Profile</Link></button>
                 {isAdmin && <>
-                    <button className="btn"><Link to='/all/sellers'>All Sellers</Link></button>
-                    <button className="btn"><Link to='/all/buyers'>All Buyers</Link></button>
-                    <button className="btn"><Link to='/report'>Reported Items</Link></button>
+                    <button className="btn btn-info my-4 px-20 py-2"><Link to='/all/sellers'>All Sellers</Link></button>
+                    <button className="btn btn-info my-4 px-20 py-2"><Link to='/all/buyers'>All Buyers</Link></button>
+                    <button className="btn btn-info my-4 px-20 py-2"><Link to='/report'>Reported Items</Link></button>
                 </>}
                { isSeller && <>
-               <button className="btn"><Link to='/add/product'>Add a Product</Link></button>
-                <button className="btn"><Link to='/products'>My Products</Link></button></>}
+               <button className="btn btn-info my-4 px-20 py-2"><Link to='/add/product'>Add a Product</Link></button>
+                <button className="btn btn-info my-4 px-20 py-2"><Link to='/products'>My Products</Link></button></>}
                 {!isAdmin && !isSeller &&<>
-                    <button className="btn"><Link to='/orders'>My Orders</Link></button>
+                    <button className="btn btn-info my-4 px-20 py-2"><Link to='/orders'>My Orders</Link></button>
                 </>}
             </div>
         </div>

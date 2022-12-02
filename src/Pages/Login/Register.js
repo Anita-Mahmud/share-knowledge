@@ -15,9 +15,9 @@ const Register = () => {
     if (loading) {
         return <Loading></Loading>
     }
-    if(token){
-        navigate('/login');
-    }
+    // if(token){
+    //     navigate('/login');
+    // }
     const handleSignUp = data => {
         //SIGNUP
         signUp(data.email, data.password)
@@ -25,6 +25,7 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 setCreatedEmail(user.email);
+                navigate('/login');
 
             })
             .catch(error => {
@@ -60,7 +61,7 @@ const Register = () => {
                         email:data.email,
                         role:data.type
                     }
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://share-knowledge-server-anita-mahmud.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 

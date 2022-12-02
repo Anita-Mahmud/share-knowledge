@@ -13,10 +13,10 @@ const Product = ({ product, productItem, setProductItem }) => {
     const navigate = useNavigate();
     const [booking, setBooking] = useState(true);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const { _id, cat_name, cat_id, img, name, location, resale_price, original_price, used_years, posted_on, seller_name, verified } = product;
+    const { _id, cat_name, cat_id, img, name, location, resale_price, original_price, used_years, posted_on, seller_name, verified,paid } = product;
 
     // const [verify, setVerify] = useState([]);
-    // axios.get('http://localhost:5000/users')
+    // axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/users')
     //     .then(verify => {
     //         setVerify(verify.data);
     //     });
@@ -33,7 +33,7 @@ const Product = ({ product, productItem, setProductItem }) => {
     //         img: img
     //     }
     //     // console.log(booking);
-    //     fetch('http://localhost:5000/bookings', {
+    //     fetch('https://share-knowledge-server-anita-mahmud.vercel.app/bookings', {
     //         method: 'POST',
     //         headers: {
     //             'content-type': 'application/json'
@@ -55,7 +55,7 @@ const Product = ({ product, productItem, setProductItem }) => {
     // }
    
     const handleReport = id => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/products/${id}`, {
             method: 'PUT',
 
         })
@@ -71,7 +71,7 @@ const Product = ({ product, productItem, setProductItem }) => {
 
     return (
         <div>
-            <div className="card lg:card-side shadow-xl ">
+           {!paid&& <div className="card lg:card-side shadow-xl ">
                 <figure><img src={img} alt={name} className='w-full h-96' /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
@@ -137,7 +137,7 @@ const Product = ({ product, productItem, setProductItem }) => {
                         <button className='btn btn-info' onClick={() => handleReport(_id)}>Report</button>
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     );
 };
