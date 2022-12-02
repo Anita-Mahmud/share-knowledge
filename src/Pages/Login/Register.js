@@ -3,15 +3,20 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import { AuthContext } from '../../context/AuthProvider';
-
+import useToken from '../../hooks/useToken';
 const Register = () => {
     const { signUp, updateUserProfile, loading } = useContext(AuthContext);
     const [signUpError, setsignUpError] = useState('');
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const [createdEmail, setCreatedEmail] = useState('')
+    const [token] = useToken(createdEmail);
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     if (loading) {
         return <Loading></Loading>
+    }
+    if(token){
+        navigate('/login');
     }
     const handleSignUp = data => {
         //SIGNUP
@@ -19,7 +24,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/login');
+                setCreatedEmail(user.email);
 
             })
             .catch(error => {
@@ -45,7 +50,9 @@ const Register = () => {
                         photoURL: imgData.data.url
                     }
                     updateUserProfile(profile)
-                        .then(() => { })
+                        .then(() => {
+                            
+                         })
                         .catch(error => console.error(error))
 
                     const user = {

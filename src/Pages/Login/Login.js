@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import { AuthContext } from '../../context/AuthProvider';
-
+import useToken from '../../hooks/useToken';
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -12,16 +12,21 @@ const Login = () => {
     const {googleAuthProvider,logIn,loading} = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
+    const [loginEmail, setLoginEmail] = useState('');
+    const [token] = useToken(loginEmail);
     const googleProvider = new GoogleAuthProvider();
     if(loading){
         return <Loading></Loading>
+    }
+    if (token) {
+        navigate(from, { replace: true });
     }
 	//google
 	const handleGoogleSignIn=()=>{
 		googleAuthProvider(googleProvider)
 		.then(result=>{
 			const user = result.user;
-            
+            setLoginEmail(user.email);
             const userInfo = {
                 name:user.displayName,
                 email:user.email,
@@ -40,7 +45,7 @@ const Login = () => {
                 console.log(result);   
 
             })
-            navigate(from, {replace: true});
+         
 		})
 		.catch(er=>setLoginError(true));
 	}
@@ -52,7 +57,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace: true});
+                setLoginEmail(user.email);
+                
             })
             .catch(error => {
                 console.log(error.message)
