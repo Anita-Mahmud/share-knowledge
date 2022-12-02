@@ -7,6 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Product = ({ product }) => {
+  
     const { user, setLoading, loading } = useContext(AuthContext);
     const navigate = useNavigate();
     const [booking, setBooking] = useState(true);
@@ -20,16 +21,17 @@ const Product = ({ product }) => {
         });
         console.log(verify);
     const handleBook = data => {
-
         const booking = {
-            user_name: data.user_name,
-            user_email: data.user_email,
-            product_name: data.product_name,
-            price: data.price,
+            user_name: user.displayName,
+            user_email: user.displayName,
+            product_id:_id,
+            product_name: name,
+            price: resale_price,
             phone: data.phone,
-            location: data.location,
-            img: product.img
+            location: location,
+            img: img
         }
+        // console.log(booking);
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
@@ -98,7 +100,7 @@ const Product = ({ product }) => {
                                         <span className="label-text">Buyer:</span>
 
                                     </label>
-                                    <input type="text" {...register("user_name")} placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={user?.displayName} readOnly />
+                                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={user?.displayName} readOnly />
 
                                 </div>
                                 <div className="form-control w-full max-w-xs">
@@ -106,7 +108,7 @@ const Product = ({ product }) => {
                                         <span className="label-text">Email:</span>
 
                                     </label>
-                                    <input type="text" {...register("user_email")} placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={user?.email} readOnly />
+                                    <input type="text"  placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={user?.email} readOnly />
 
                                 </div>
                                 <div className="form-control w-full max-w-xs">
@@ -114,7 +116,7 @@ const Product = ({ product }) => {
                                         <span className="label-text">Item:</span>
 
                                     </label>
-                                    <input type="text" {...register("product_name")} placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={name} readOnly />
+                                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={name} readOnly />
 
                                 </div>
                                 <div className="form-control w-full max-w-xs">
@@ -122,7 +124,7 @@ const Product = ({ product }) => {
                                         <span className="label-text">Price:</span>
 
                                     </label>
-                                    <input type="text" {...register("price")} placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={resale_price} Taka readOnly />
+                                    <input type="text"  placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={resale_price} readOnly />
 
                                 </div>
                                 <div className="form-control w-full max-w-xs">
@@ -140,7 +142,7 @@ const Product = ({ product }) => {
                                         <span className="label-text">Location:</span>
 
                                     </label>
-                                    <input type="text" {...register("location")} placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={location} />
+                                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" defaultValue={location} />
 
                                 </div>
                                 <div className="modal-action">
