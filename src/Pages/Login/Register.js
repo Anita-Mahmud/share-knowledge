@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,22 +10,16 @@ const Register = () => {
     const [signUpError, setsignUpError] = useState('');
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
-    const [createdEmail, setCreatedEmail] = useState('')
-    
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     if (loading) {
         return <Loading></Loading>
     }
-    // if(token){
-    //     navigate('/login');
-    // }
     const handleSignUp = data => {
         //SIGNUP
         signUp(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setCreatedEmail(user.email);
                 navigate('/login');
 
             })
@@ -50,10 +45,9 @@ const Register = () => {
                         displayName: data.name,
                         photoURL: imgData.data.url
                     }
+                    console.log(profile);
                     updateUserProfile(profile)
-                        .then(() => {
-                            
-                         })
+                        .then(() => { })
                         .catch(error => console.error(error))
 
                     const user = {
@@ -61,7 +55,7 @@ const Register = () => {
                         email:data.email,
                         role:data.type
                     }
-                    fetch('https://share-knowledge-server-anita-mahmud.vercel.app/users', {
+                    fetch('https://share-knowledge-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 

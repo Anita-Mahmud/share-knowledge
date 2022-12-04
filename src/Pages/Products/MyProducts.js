@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const MyProducts = () => {
     const {user} = useContext(AuthContext);
-    const url = `https://share-knowledge-server-anita-mahmud.vercel.app/products?name=${user?.displayName}`;
+    const url = `https://share-knowledge-server.vercel.app/products?name=${user?.displayName}`;
     const { data: products = [],refetch,isLoading } = useQuery({
         queryKey: ['products', user?.displayName],
         queryFn: async () => {
@@ -20,7 +20,7 @@ const MyProducts = () => {
         return <Loading></Loading>
     }
     const handleDelete = id =>{
-        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/products/${id}`, {
+        fetch(`https://share-knowledge-server.vercel.app/products/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -32,7 +32,7 @@ const MyProducts = () => {
         })
     }
     const handleAdvertise = id =>{
-        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/allproducts/${id}`, {
+        fetch(`https://share-knowledge-server.vercel.app/allproducts/${id}`, {
             method: 'PUT', 
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`

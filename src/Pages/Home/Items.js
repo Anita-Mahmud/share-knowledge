@@ -5,7 +5,7 @@ const Items = ({advertise}) => {
         <div>
  {!advertise.paid?  
  <div className="card bg-base-100 shadow-xl">
-  <figure><img src={advertise.img} alt={advertise.name} /></figure>
+  <figure><img src={advertise.img} alt={advertise.name} className='w-full h-52'/></figure>
   <div className="card-body">
     <h2 className="card-title">{advertise.name}</h2>
     <p>Category: {advertise.cat_name}</p>

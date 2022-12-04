@@ -6,7 +6,7 @@ import Loading from '../../../components/Loading';
 import Sidebar from '../../../components/Sidebar';
 
 const Sellers = () => {
-    const url = 'https://share-knowledge-server-anita-mahmud.vercel.app/users/sellers';
+    const url = 'https://share-knowledge-server.vercel.app/users/sellers';
 
     const { data: sellers = [],isLoading,refetch } = useQuery({
         queryKey: ['sellers'],
@@ -20,7 +20,7 @@ const Sellers = () => {
         return <Loading></Loading>
     }
     const handleDelete = id =>{
-        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/users/${id}`, {
+        fetch(`https://share-knowledge-server.vercel.app/users/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -33,7 +33,7 @@ const Sellers = () => {
     }
     const handleVerify = email =>{
         console.log(email);
-        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/users/${email}`, {
+        fetch(`https://share-knowledge-server.vercel.app/users/${email}`, {
             method: 'PUT',
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`

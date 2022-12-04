@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path:'/category/:id',
                 element:<PrivateRoute><Products></Products></PrivateRoute>,
-                loader:({params})=>fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/category/${params.id}`)
+                loader:({params})=>fetch(`https://share-knowledge-server.vercel.app/category/${params.id}`)
                
             },
             {
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
             {
                 path:'/payment/:id',
                 element:<PrivateRoute><Payment></Payment></PrivateRoute>,
-                loader:({params})=>fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/bookings/${params.id}`)
+                loader:({params})=>fetch(`https://share-knowledge-server.vercel.app/bookings/${params.id}`)
             }
             
         ]

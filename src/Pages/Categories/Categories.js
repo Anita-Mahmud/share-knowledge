@@ -6,11 +6,11 @@ import Category from './Category';
 
 const Categories = () => {
 //     const [categories,setCategories] = useState([]);
-//     axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/categories')
+//     axios.get('https://share-knowledge-server.vercel.app/categories')
 // .then(categories => {
 //     setCategories(categories.data);
 // });
-const url = 'https://share-knowledge-server-anita-mahmud.vercel.app/categories';
+const url = 'https://share-knowledge-server.vercel.app/categories';
     const { data: categories = [],isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {

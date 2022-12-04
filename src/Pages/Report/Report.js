@@ -7,12 +7,12 @@ import Sidebar from '../../components/Sidebar';
 const Report = () => {
    
     const [reports,setReports] = useState([]);
-    axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/report')
+    axios.get('https://share-knowledge-server.vercel.app/report')
 .then(reports => {
     setReports(reports.data);
 });
 const handleDelete = id =>{
-    fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/products/${id}`, {
+    fetch(`https://share-knowledge-server.vercel.app/products/${id}`, {
         method: 'DELETE'
     })
     .then(res => res.json())
@@ -24,7 +24,7 @@ const handleDelete = id =>{
            
         }
     })
-//     fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/report/${id}`, {
+//     fetch(`https://share-knowledge-server.vercel.app/report/${id}`, {
 //         method: 'DELETE'
 //     })
 //     .then(res => res.json())

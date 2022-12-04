@@ -13,7 +13,7 @@ const CheckoutForm = ({ booking }) => {
     const { price, user_email, user_name, _id,product_id } = booking;
 
     useEffect(() => {
-        fetch("https://share-knowledge-server-anita-mahmud.vercel.app/create-payment-intent", {
+        fetch("https://share-knowledge-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const CheckoutForm = ({ booking }) => {
                 bookingId: _id,
                 product_id
             }
-            fetch('https://share-knowledge-server-anita-mahmud.vercel.app/payments', {
+            fetch('https://share-knowledge-server.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

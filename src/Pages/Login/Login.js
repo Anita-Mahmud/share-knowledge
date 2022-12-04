@@ -13,7 +13,7 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [loginEmail, setLoginEmail] = useState('');
-    const [token] = useToken(loginEmail);
+    // const [token] = useToken(loginEmail);
     const googleProvider = new GoogleAuthProvider();
     if(loading){
         return <Loading></Loading>
@@ -33,7 +33,7 @@ const Login = () => {
                 role:'Buyer'
             }
             console.log(userInfo);
-            fetch('https://share-knowledge-server-anita-mahmud.vercel.app/users', {
+            fetch('https://share-knowledge-server.vercel.app/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json', 

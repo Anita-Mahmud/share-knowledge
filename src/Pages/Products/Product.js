@@ -16,7 +16,7 @@ const Product = ({ product, productItem, setProductItem }) => {
     const { _id, cat_name, cat_id, img, name, location, resale_price, original_price, used_years, posted_on, seller_name, verified,paid } = product;
 
     // const [verify, setVerify] = useState([]);
-    // axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/users')
+    // axios.get('https://share-knowledge-server.vercel.app/users')
     //     .then(verify => {
     //         setVerify(verify.data);
     //     });
@@ -33,7 +33,7 @@ const Product = ({ product, productItem, setProductItem }) => {
     //         img: img
     //     }
     //     // console.log(booking);
-    //     fetch('https://share-knowledge-server-anita-mahmud.vercel.app/bookings', {
+    //     fetch('https://share-knowledge-server.vercel.app/bookings', {
     //         method: 'POST',
     //         headers: {
     //             'content-type': 'application/json'
@@ -55,7 +55,7 @@ const Product = ({ product, productItem, setProductItem }) => {
     // }
    
     const handleReport = id => {
-        fetch(`https://share-knowledge-server-anita-mahmud.vercel.app/products/${id}`, {
+        fetch(`https://share-knowledge-server.vercel.app/products/${id}`, {
             method: 'PUT',
 
         })

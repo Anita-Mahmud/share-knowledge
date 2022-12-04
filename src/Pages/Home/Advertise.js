@@ -4,14 +4,14 @@ import Items from './Items';
 import { useQuery } from '@tanstack/react-query';
 const Advertise = () => {
 //     const [advertises,setAdvertises] = useState([]);
-//     axios.get('https://share-knowledge-server-anita-mahmud.vercel.app/advertise')
+//     axios.get('https://share-knowledge-server.vercel.app/advertise')
 // .then(advertises => {
 //     setAdvertises(advertises.data);
 // });
 const {data: advertises = [], refetch} = useQuery({
     queryKey: ['users'],
     queryFn: async() =>{
-        const res = await fetch('https://share-knowledge-server-anita-mahmud.vercel.app/advertise'
+        const res = await fetch('https://share-knowledge-server.vercel.app/advertise'
         // ,{
         //     headers: {
         //         authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -21,7 +21,7 @@ const Booking = ({ productItem, setProductItem }) => {
             img: img
         }
         // console.log(booking);
-        fetch('https://share-knowledge-server-anita-mahmud.vercel.app/bookings', {
+        fetch('https://share-knowledge-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
